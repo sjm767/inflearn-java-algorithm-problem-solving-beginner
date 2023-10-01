@@ -2,9 +2,13 @@ package inflearn.java.algorithm.problem.solving.beginner.code;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.function.BiConsumer;
 
 public final class StringUtil {
 
@@ -245,28 +249,77 @@ public final class StringUtil {
     int p = 1000;
 
     //왼쪽에서 오른쪽으로
-    for (int i = 0; i < s.length(); i++) {
-      if (s.charAt(i) == c) {
-        p = 0;
-        answer[i] = p;
-      } else {
+    for(int i=0;i<s.length();i++){
+      if(s.charAt(i) == c){
+        p=0;
+      }else{
         p++;
+      }
+      answer[i] = p;
+    }
+    
+    //오른쪽에서 왼쪽으로
+    p=1000;
+    for(int i=s.length()-1;i>=0;i--){
+      if(s.charAt(i) == c){
+        p=0;
         answer[i] = p;
+      }else{
+        p++;
+        answer[i] = Math.min(answer[i], p);
       }
     }
-    p = 1000;
+    return answer;
+  }
 
-    //오른쪽에서 왼쪽으로
-    for (int i = s.length() - 1; i >= 0; i--) {
-      if (s.charAt(i) == c) {
-        p = 0;
-        answer[i] = p;
-      } else {
-        p++;
-        if (answer[i] > p) {
-          answer[i] = p;
+  /**
+   * 문자열 압축
+   * @param s
+   * @return
+   */
+  public static String compressString(String s){
+    String answer = "";
+    int cnt = 1;
+
+    for(int i=0;i<s.length()-1;i++){
+      if(s.charAt(i) == s.charAt(i+1)){
+        cnt++;
+      }else{
+        answer += ""+s.charAt(i);
+        if(cnt > 1){
+          answer += cnt;
         }
+        cnt = 1;
       }
+    }
+
+    answer+=s.charAt(s.length()-1);
+    if(cnt > 1){
+      answer += cnt;
+    }
+
+    return answer;
+  }
+
+  /**
+   * 12. 암호
+   * @param n
+   * @param s
+   * @return
+   */
+  public static String password(int n, String s) {
+    String answer = "";
+    List<String> list = new ArrayList<>();
+
+    while(s.length()>0){
+      list.add(s.substring(0, 7));
+      s = s.substring(7);
+    }
+
+    for (String str : list) {
+      String b = str.replace("#","1").replace("*","0");
+      char c = (char)Integer.parseInt(b,2);
+      answer+=c;
     }
 
     return answer;

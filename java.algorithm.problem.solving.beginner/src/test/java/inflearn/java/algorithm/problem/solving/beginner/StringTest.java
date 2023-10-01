@@ -1,6 +1,5 @@
 package inflearn.java.algorithm.problem.solving.beginner;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import inflearn.java.algorithm.problem.solving.beginner.code.StringUtil;
@@ -115,5 +114,23 @@ class StringTest {
     for (int i = 0; i < result.length; i++) {
       assertThat(result[i]).isEqualTo(expect[i]);
     }
+  }
+
+  @Test
+  @DisplayName("11. 문자열 압축")
+  void compressString(){
+
+    assertThat(StringUtil.compressString("KKHSSSSSSSE")).isEqualTo("K2HS7E");
+    assertThat(StringUtil.compressString("KSTTTSEEKFKKKDJJGG")).isEqualTo("KST3SE2KFK3DJ2G2");
+    assertThat(StringUtil.compressString("KKKKTTTUUUKDDDDDKDDDKKSKKFJKYYYKUYY")).isEqualTo("K4T3U3KD5KD3K2SK2FJKY3KUY2");
+  }
+
+  @Test
+  @DisplayName("12 .암호")
+  void password(){
+
+    assertThat(StringUtil.password(4, "#****###**#####**#####**##**")).isEqualTo("COOL");
+    assertThat(StringUtil.password(10, "#*#*#**#***#*##*****##****###**#***#***#*##*#**#*#****#*#*****##***###")).isEqualTo("TEACHERBAG");
+
   }
 }

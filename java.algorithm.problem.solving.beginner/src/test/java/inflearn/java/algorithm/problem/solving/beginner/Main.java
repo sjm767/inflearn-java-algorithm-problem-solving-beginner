@@ -3,30 +3,26 @@ package inflearn.java.algorithm.problem.solving.beginner;
 import java.util.*;
 
 public class Main {
-  public static int[] solution(String s,char c){
-    int[] answer = new int[s.length()];
-    int p = 1000;
+  public static int solution(int n, int [][]arr){
+    int answer = 0;
+    int max = Integer.MIN_VALUE;
 
-    //왼쪽에서 오른쪽으로
-    for (int i = 0; i < s.length(); i++) {
-      if (s.charAt(i) == c) {
-        p = 0;
-        answer[i] = p;
-      } else {
-        p++;
-        answer[i] = p;
+    int []sc = new int[n];
+    int cnt = 0;
+
+    for(int i=0;i<n;i++){
+      cnt = 0;
+      for(int j=0;j<n;j++){
+        for(int k=0;k<5;k++){
+          if(arr[i][k] == arr[j][k]){
+            cnt++;
+            break;
+          }
+        }
       }
-    }
-    p = 1000;
-
-    //오른쪽에서 왼쪽으로
-    for (int i = s.length() - 1; i >= 0; i--) {
-      if (s.charAt(i) == c) {
-        p = 0;
-        answer[i] = p;
-      } else {
-        p++;
-        answer[i] = Math.min(answer[i], p);
+      if(max < cnt){
+        max = cnt;
+        answer = i+1;
       }
     }
 
@@ -35,14 +31,14 @@ public class Main {
   public static void main(String[] args) {
     Scanner kb = new Scanner(System.in);
 
-    String str=kb.next();
-    char c = kb.next().charAt(0);
-    int[] result = solution(str, c);
-
-    for (int n : result) {
-      System.out.print(n+" ");
+    int n = kb.nextInt();
+    int [][]arr = new int[n][5];
+    for(int i=0;i<n;i++){
+      for(int j=0;j<5;j++){
+        arr[i][j] = kb.nextInt();
+      }
     }
-
+    System.out.println(solution(n,arr));
   }
 
 }
