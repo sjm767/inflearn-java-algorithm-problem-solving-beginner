@@ -3,42 +3,44 @@ package inflearn.java.algorithm.problem.solving.beginner;
 import java.util.*;
 
 public class Main {
-  public static int solution(int n, int [][]arr){
-    int answer = 0;
-    int max = Integer.MIN_VALUE;
+  public static int[] solution(int n, int k, int[] arr){
+    List<Integer> answer = new ArrayList<>();
 
-    int []sc = new int[n];
-    int cnt = 0;
+    int lt=0,rt=0;
+    Map<Integer,Integer> map = new HashMap<>();
 
-    for(int i=0;i<n;i++){
-      cnt = 0;
-      for(int j=0;j<n;j++){
-        for(int k=0;k<5;k++){
-          if(arr[i][k] == arr[j][k]){
-            cnt++;
-            break;
-          }
-        }
-      }
-      if(max < cnt){
-        max = cnt;
-        answer = i+1;
-      }
+    for(rt=0;rt<k;rt++){
+      map.put(arr[rt],map.getOrDefault(arr[rt],0)+1);
     }
+    answer.add(map.size());
 
-    return answer;
+    while(rt<n){
+      map.put(arr[lt],map.get(arr[lt])-1);
+      if(map.get(arr[lt]) <= 0){
+        map.remove(arr[lt]);
+      }
+      map.put(arr[rt],map.getOrDefault(arr[rt],0)+1);
+      lt++;
+      rt++;
+
+      answer.add(map.size());
+    }
+    return answer.stream().mapToInt(Integer::intValue).toArray();
   }
   public static void main(String[] args) {
     Scanner kb = new Scanner(System.in);
 
     int n = kb.nextInt();
-    int [][]arr = new int[n][5];
+    int k = kb.nextInt();
+    int[] arr = new int[n];
     for(int i=0;i<n;i++){
-      for(int j=0;j<5;j++){
-        arr[i][j] = kb.nextInt();
-      }
+      arr[i] = kb.nextInt();
     }
-    System.out.println(solution(n,arr));
+
+    int[] result = solution(n, k, arr);
+    for (int num : result) {
+      System.out.print(num+" ");
+    }
   }
 
 }

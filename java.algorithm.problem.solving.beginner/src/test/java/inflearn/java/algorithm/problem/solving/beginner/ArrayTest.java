@@ -111,4 +111,11 @@ class ArrayTest {
 
   }
 
+  @Test
+  @DisplayName("12. 멘토링")
+  void mentoring(){
+
+
+  }
+
 }

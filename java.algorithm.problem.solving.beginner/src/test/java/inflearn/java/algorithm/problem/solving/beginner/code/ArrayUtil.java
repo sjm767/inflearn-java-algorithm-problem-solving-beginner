@@ -304,4 +304,17 @@ public final class ArrayUtil {
 
     return answer;
   }
+
+  /**
+   * 12. 멘토링
+   * @param n
+   * @param m
+   * @param arr
+   * @return
+   */
+  public static int mentoring(int n,int m, int [][]arr){
+    int answer = 0;
+    
+    return answer;
+  }
 }
