@@ -3,44 +3,49 @@ package inflearn.java.algorithm.problem.solving.beginner;
 import java.util.*;
 
 public class Main {
-  public static int[] solution(int n, int k, int[] arr){
-    List<Integer> answer = new ArrayList<>();
 
-    int lt=0,rt=0;
-    Map<Integer,Integer> map = new HashMap<>();
+  public static int solution(String str) {
 
-    for(rt=0;rt<k;rt++){
-      map.put(arr[rt],map.getOrDefault(arr[rt],0)+1);
-    }
-    answer.add(map.size());
+    int sum = 0;
+    Stack<Integer> stack = new Stack<>();
 
-    while(rt<n){
-      map.put(arr[lt],map.get(arr[lt])-1);
-      if(map.get(arr[lt]) <= 0){
-        map.remove(arr[lt]);
+    int a,b;
+
+    for (Character c : str.toCharArray()) {
+
+      if(c >= 48 && c <= 57) {
+        stack.push(c-'0');
+      }else{
+        a = stack.pop();
+        b = stack.pop();
+
+        switch (c){
+          case '+':
+            sum=(b+a);
+            break;
+          case '-':
+            sum=(b-a);
+            break;
+          case '*':
+            sum=(b*a);
+            break;
+          case '/':
+            sum=(b/a);
+            break;
+        }
+
+        stack.push(sum);
       }
-      map.put(arr[rt],map.getOrDefault(arr[rt],0)+1);
-      lt++;
-      rt++;
-
-      answer.add(map.size());
     }
-    return answer.stream().mapToInt(Integer::intValue).toArray();
+
+    return sum;
   }
+
   public static void main(String[] args) {
     Scanner kb = new Scanner(System.in);
 
-    int n = kb.nextInt();
-    int k = kb.nextInt();
-    int[] arr = new int[n];
-    for(int i=0;i<n;i++){
-      arr[i] = kb.nextInt();
-    }
-
-    int[] result = solution(n, k, arr);
-    for (int num : result) {
-      System.out.print(num+" ");
-    }
+    String str = kb.next();
+    System.out.println(solution(str));
   }
 
 }
