@@ -4,48 +4,57 @@ import java.util.*;
 
 public class Main {
 
-  public static int solution(String str) {
+  static class Person{
+    int id;
+    int priority;
 
-    int sum = 0;
-    Stack<Integer> stack = new Stack<>();
+    public Person(int id, int priority) {
+      this.id=id;
+      this.priority = priority;
+    }
+  }
 
-    int a,b;
+  public static int solution(int n, int m, int []arr) {
+    int answer = 0;
+    Queue<Person> queue = new LinkedList<>();
 
-    for (Character c : str.toCharArray()) {
-
-      if(c >= 48 && c <= 57) {
-        stack.push(c-'0');
-      }else{
-        a = stack.pop();
-        b = stack.pop();
-
-        switch (c){
-          case '+':
-            sum=(b+a);
-            break;
-          case '-':
-            sum=(b-a);
-            break;
-          case '*':
-            sum=(b*a);
-            break;
-          case '/':
-            sum=(b/a);
-            break;
-        }
-
-        stack.push(sum);
-      }
+    for(int i=0;i<arr.length;i++){
+      queue.offer(new Person(i, arr[i]));
     }
 
-    return sum;
+    while(!queue.isEmpty()){
+      Person person = queue.poll();
+
+      for(Person element : queue){
+        if (person.priority < element.priority) {
+          queue.offer(person);
+          person = null;
+          break;
+        }
+      }
+
+      if (person != null) {
+        answer++;
+        if (person.id == m) {
+          return answer;
+        }
+      }
+
+    }
+    return answer;
   }
 
   public static void main(String[] args) {
     Scanner kb = new Scanner(System.in);
 
-    String str = kb.next();
-    System.out.println(solution(str));
+    int n = kb.nextInt();
+    int m = kb.nextInt();
+    int []arr = new int[n];
+    for(int i=0;i<n;i++){
+      arr[i] = kb.nextInt();
+    }
+
+    System.out.println(solution(n, m, arr));
   }
 
 }

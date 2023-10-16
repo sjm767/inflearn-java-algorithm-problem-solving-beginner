@@ -3,6 +3,9 @@ package inflearn.java.algorithm.problem.solving.beginner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import inflearn.java.algorithm.problem.solving.beginner.code.TwoPointersUtil;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +22,8 @@ class TwoPointersTest {
   @Test
   @DisplayName("2. 공통원소 구하기")
   void commonElement(){
-    assertThat(TwoPointersUtil.commonElement(35,new int[]{1,3,5,9,2},5,new int[]{3,2,5,7,8})).isEqualTo(new int[]{2,3,5});
+    List<Integer> expect = new ArrayList<>(List.of(2,3,5));
+    assertThat(TwoPointersUtil.commonElement(35,new int[]{1,3,5,9,2},5,new int[]{3,2,5,7,8})).isEqualTo(expect);
   }
 
   @Test
@@ -49,6 +53,5 @@ class TwoPointersTest {
 
     assertThat(result).isEqualTo(8);
   }
-
 
 }

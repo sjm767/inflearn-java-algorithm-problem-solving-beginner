@@ -38,4 +38,30 @@ class StackQueueTest {
   void postfix() {
     assertThat(StackQueueUtil.postfix("352+*9-")).isEqualTo(12);
   }
+
+  @Test
+  @DisplayName("5. 쇠 막대기")
+  void ironRod(){
+    assertThat(StackQueueUtil.ironRod("()(((()())(())()))(())")).isEqualTo(17);
+    assertThat(StackQueueUtil.ironRod("(((()(()()))(())()))(()())")).isEqualTo(24);
+  }
+
+  @Test
+  @DisplayName("6. 공주구하기")
+  void savePrincess(){
+    assertThat(StackQueueUtil.savePrincess(8,3)).isEqualTo(7);
+  }
+  @Test
+  @DisplayName("7. 교육과정설계")
+  void curriculumDesign(){
+    assertThat(StackQueueUtil.curriculumDesign("CBA", "CBDAGE")).isEqualTo("YES");
+    assertThat(StackQueueUtil.curriculumDesign("AKDEF", "AYKGDHEJ")).isEqualTo("NO");
+  }
+
+  @Test
+  @DisplayName("8. 응급실")
+  void emergencyRoom(){
+    assertThat(StackQueueUtil.emergencyRoom(5, 2, new int[]{60, 50, 70, 80, 90})).isEqualTo(3);
+    assertThat(StackQueueUtil.emergencyRoom(6, 3, new int[]{70,60,90,60,60,60})).isEqualTo(4);
+  }
 }
