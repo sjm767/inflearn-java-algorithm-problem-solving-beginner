@@ -4,46 +4,52 @@ import java.util.*;
 
 public class Main {
 
-
-  static class Point implements Comparable<Point>{
-    public int x;
-    public int y;
-
-    public Point(int x, int y) {
-      this.x = x;
-      this.y = y;
-    }
-
-    @Override
-    public int compareTo(Point  o) {
-      if (this.x == o.x) {
-        return this.y - o.y;
+  private static int stableCount(int[] arr, int distance) {
+    int cnt=1;
+    int currentIdx = 0;
+    for (int i = 1; i < arr.length; i++) {
+      if(arr[currentIdx] + distance <= arr[i]){
+        cnt++;
+        currentIdx = i;
       }
-      return this.x-o.x;
     }
+
+    return cnt;
   }
 
-  public static List<Point> compareTo(int n, List<Point> points){
-    Collections.sort(points);
-    return points;
+  public static int solution(int n, int c, int[] arr){
+    int answer = 0;
+
+    Arrays.sort(arr);
+    int lt = arr[0];
+    int rt = Arrays.stream(arr).max().getAsInt();
+
+    while (lt <= rt) {
+      int mid = (lt + rt) / 2;
+
+      //배치되면
+      if(stableCount(arr,mid) >= c){
+        answer = mid;
+        lt = mid+1;
+      }else{
+        rt = mid-1;
+      }
+    }
+    return answer;
   }
 
   public static void main(String[] args) {
     Scanner kb = new Scanner(System.in);
 
     int n = kb.nextInt();
-    List<Point> list = new ArrayList<>();
+    int m = kb.nextInt();
+    int[] arr = new int[n];
 
-    for(int i=0;i<n;i++){
-      int x=kb.nextInt();
-      int y=kb.nextInt();
-      list.add(new Point(x, y));
+    for (int i = 0; i < n; i++) {
+      arr[i]=kb.nextInt();
     }
-    Collections.sort(list);
+    System.out.println(solution(n, m, arr));
 
-    for (Point point : list) {
-      System.out.println(point.x + " " + point.y);
-    }
   }
 
 }

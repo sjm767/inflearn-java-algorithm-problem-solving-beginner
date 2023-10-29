@@ -1,8 +1,7 @@
-package inflearn.java.algorithm.problem.solving.beginner;
+package inflearn.java.algorithm.problem.solving.beginner.ch2;
 
 import static org.assertj.core.api.Assertions.*;
 
-import inflearn.java.algorithm.problem.solving.beginner.code.ArrayUtil;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

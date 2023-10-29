@@ -1,7 +1,6 @@
-package inflearn.java.algorithm.problem.solving.beginner;
+package inflearn.java.algorithm.problem.solving.beginner.ch6;
 
-import inflearn.java.algorithm.problem.solving.beginner.code.SortAndSearchUtil;
-import inflearn.java.algorithm.problem.solving.beginner.code.SortAndSearchUtil.Point;
+import inflearn.java.algorithm.problem.solving.beginner.ch6.SortAndSearchUtil.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -61,17 +60,17 @@ class SortAndSearchTest {
 
   @Test
   @DisplayName("6. 장난꾸러기")
-  void prankster(){
-    int n=9;
-    int []arr = {120,125,152,130,135,135,143,127,160};
+  void prankster() {
+    int n = 9;
+    int[] arr = {120, 125, 152, 130, 135, 135, 143, 127, 160};
 
-    Assertions.assertThat(SortAndSearchUtil.prankster(n, arr)).isEqualTo(new int[] {3,8});
+    Assertions.assertThat(SortAndSearchUtil.prankster(n, arr)).isEqualTo(new int[]{3, 8});
   }
 
   @Test
   @DisplayName("7. 좌표 정렬")
-  void compareTo(){
-    int n=5;
+  void compareTo() {
+    int n = 5;
     List<Point> list = new ArrayList<>();
     list.add(new Point(2, 7));
     list.add(new Point(1, 3));
@@ -90,4 +89,38 @@ class SortAndSearchTest {
     Assertions.assertThat(SortAndSearchUtil.compareTo(n, list)).isEqualTo(expect);
   }
 
+  @Test
+  @DisplayName("8. 이분검색")
+  void binarySearch() {
+    int n = 8;
+    int m = 32;
+    int[] arr = {23,87,65,12,57,32,99,81};
+
+    Assertions.assertThat(SortAndSearchUtil.binarySearch(n, m, arr)).isEqualTo(3);
+  }
+
+  @Test
+  @DisplayName("9. 뮤직비디오")
+  void musicVideo() {
+    int n = 9;
+    int m = 3;
+    int[] arr = {1,2,3,4,5,6,7,8,9};
+
+    Assertions.assertThat(SortAndSearchUtil.musicVideo(n, m, arr)).isEqualTo(17);
+
+    n = 5;
+    m = 4;
+    arr=new int[]{1,1,1,1,1};
+    Assertions.assertThat(SortAndSearchUtil.musicVideo(n, m, arr)).isEqualTo(2);
+  }
+
+  @Test
+  @DisplayName("10. 마구간 정하기")
+  void stable(){
+    int n = 5;
+    int c = 3;
+    int []arr = {1,2,8,4,9};
+
+    Assertions.assertThat(SortAndSearchUtil.stable(n, c, arr)).isEqualTo(3);
+  }
 }

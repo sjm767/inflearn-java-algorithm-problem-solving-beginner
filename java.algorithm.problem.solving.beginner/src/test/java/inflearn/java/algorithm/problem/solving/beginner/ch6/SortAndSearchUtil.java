@@ -1,4 +1,4 @@
-package inflearn.java.algorithm.problem.solving.beginner.code;
+package inflearn.java.algorithm.problem.solving.beginner.ch6;
 
 import java.awt.Point;
 import java.util.*;
@@ -114,20 +114,20 @@ public class SortAndSearchUtil {
 
   /**
    * 5. 중복 확인
+   *
    * @param n
    * @param arr
    * @return
    */
-  public static String checkDuplicate(int n,int []arr){
+  public static String checkDuplicate(int n, int[] arr) {
     String answer = "U";
 
     Map<Integer, Integer> map = new HashMap<>();
 
-
     for (int num : arr) {
-      if(map.get(num) == null){
-        map.put(num,map.getOrDefault(num,0) + 1);
-      }else{
+      if (map.get(num) == null) {
+        map.put(num, map.getOrDefault(num, 0) + 1);
+      } else {
         return "D";
       }
     }
@@ -136,18 +136,19 @@ public class SortAndSearchUtil {
 
   /**
    * 6. 장난꾸러기
+   *
    * @param n
    * @param arr
    * @return
    */
-  public static int[] prankster(int n,int []arr){
+  public static int[] prankster(int n, int[] arr) {
     List<Integer> answer = new ArrayList<>();
     int[] copy = arr.clone();
     Arrays.sort(arr);
 
-    for (int i=0;i<n;i++) {
-      if(arr[i] != copy[i]){
-        answer.add(i+1);
+    for (int i = 0; i < n; i++) {
+      if (arr[i] != copy[i]) {
+        answer.add(i + 1);
       }
     }
 
@@ -158,17 +159,19 @@ public class SortAndSearchUtil {
 
   /**
    * 7. 좌표 정렬
+   *
    * @param n
    * @param points
    * @return
    */
-  public static List<Point> compareTo(int n, List<Point> points){
+  public static List<Point> compareTo(int n, List<Point> points) {
     Collections.sort(points);
     return points;
   }
 
 
-  public static class Point implements Comparable<Point>{
+  public static class Point implements Comparable<Point> {
+
     public int x;
     public int y;
 
@@ -182,17 +185,135 @@ public class SortAndSearchUtil {
       if (this.x == o.x) {
         return this.y - o.y;
       }
-      return this.x-o.x;
+      return this.x - o.x;
     }
 
     @Override
     public boolean equals(Object obj) {
       Point target = null;
-      if(obj instanceof Point){
+      if (obj instanceof Point) {
         target = (Point) obj;
       }
 
       return this.x == target.x && this.y == target.y;
     }
+  }
+
+  /**
+   * 8. 이분검색 (이진탐색)
+   *
+   * @param n
+   * @param m
+   * @param arr
+   * @return
+   */
+  public static int binarySearch(int n, int m, int[] arr) {
+    int answer = -1;
+
+    Arrays.sort(arr);
+
+    int lt = 0;
+    int rt = n - 1;
+    int mid;
+
+    while (lt <= rt) {
+      mid = (lt + rt) / 2;
+
+      if (m == arr[mid]) {
+        answer = mid + 1;
+        break;
+      } else if (m < arr[mid]) {
+        rt = mid - 1;
+      } else {
+        lt = mid + 1;
+      }
+    }
+    return answer;
+  }
+
+  /**
+   * 9. 뮤직비디오
+   *
+   * @param n
+   * @param m
+   * @param arr
+   * @return
+   */
+  public static int musicVideo(int n, int m, int[] arr) {
+    int answer = 0;
+
+    int lt = Arrays.stream(arr).max().getAsInt();
+    int rt = Arrays.stream(arr).sum();
+    int mid;
+
+    while (lt <= rt) {
+      mid = (lt + rt) / 2;
+
+      if (count(arr, mid) <= m) {
+        answer = mid;
+        rt = mid - 1;
+      } else {
+        lt = mid + 1;
+      }
+    }
+
+    return answer;
+  }
+
+  private static int count(int[] arr, int capacity) {
+    int cnt = 1;
+    int sum = 0;
+    for (int x : arr) {
+      if (sum + x > capacity) {
+        cnt++;
+        sum = x;
+      } else {
+        sum += x;
+      }
+    }
+
+    return cnt;
+  }
+
+  /**
+   * 10. 마구간 정하기
+   *
+   * @param n
+   * @param c
+   * @param arr
+   * @return
+   */
+  public static int stable(int n, int c, int[] arr) {
+    int answer = 0;
+
+    Arrays.sort(arr);
+    int lt = arr[0];
+    int rt = Arrays.stream(arr).max().getAsInt();
+
+    while (lt <= rt) {
+      int mid = (lt + rt) / 2;
+      
+      //배치되면
+      if(stableCount(arr,mid) >= c){
+        answer = mid;
+        lt = mid+1;
+      }else{
+        rt = mid-1;
+      }
+    }
+    return answer;
+  }
+
+  private static int stableCount(int[] arr, int distance) {
+    int cnt=1;
+    int currentIdx = 0;
+    for (int i = 1; i < arr.length; i++) {
+      if(arr[currentIdx] + distance <= arr[i]){
+        cnt++;
+        currentIdx = i;
+      }
+    }
+
+    return cnt;
   }
 }

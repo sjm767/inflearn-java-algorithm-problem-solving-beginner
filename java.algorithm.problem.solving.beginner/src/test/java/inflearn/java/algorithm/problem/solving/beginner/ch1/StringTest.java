@@ -1,8 +1,7 @@
-package inflearn.java.algorithm.problem.solving.beginner;
+package inflearn.java.algorithm.problem.solving.beginner.ch1;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import inflearn.java.algorithm.problem.solving.beginner.code.StringUtil;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

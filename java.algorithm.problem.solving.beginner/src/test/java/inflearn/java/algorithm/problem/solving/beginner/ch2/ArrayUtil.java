@@ -1,4 +1,4 @@
-package inflearn.java.algorithm.problem.solving.beginner.code;
+package inflearn.java.algorithm.problem.solving.beginner.ch2;
 
 import java.util.*;
 
