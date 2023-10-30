@@ -1,8 +1,12 @@
-package inflearn.java.algorithm.problem.solving.beginner;
+package inflearn.java.algorithm.problem.solving.beginner.ch7;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
-public class Main {
+/**
+ * 8. 송아지 찾기1
+ */
+public class FindCalf {
 
   static int s;
   static int e;
@@ -35,13 +39,12 @@ public class Main {
     return -1;
   }
   public static void main(String[] args) {
-    Scanner kb = new Scanner(System.in);
+    s = 5;
+    e = 14;
 
-    s= kb.nextInt();
-    e=kb.nextInt();
+
 
     int answer = BFS(0);
     System.out.println(answer);
   }
-
 }
