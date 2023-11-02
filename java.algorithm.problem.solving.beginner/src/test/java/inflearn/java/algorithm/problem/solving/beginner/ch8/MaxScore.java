@@ -1,8 +1,12 @@
-package inflearn.java.algorithm.problem.solving.beginner;
+package inflearn.java.algorithm.problem.solving.beginner.ch8;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Main {
+/**
+ * 3. 최대점수 구하기 (DFS)
+ */
+public class MaxScore {
 
   static class Problem{
     public int score;
@@ -34,20 +38,18 @@ public class Main {
   }
 
   public static void main(String[] args) {
-    Scanner kb = new Scanner(System.in);
     list = new ArrayList<>();
-    n=kb.nextInt();
-    m=kb.nextInt();
+    n=5;
+    m=20;
 
-    for(int i=0;i<n;i++){
-      int sc = kb.nextInt();
-      int li = kb.nextInt();
-      list.add(new Problem(sc, li));
-    }
+    list.add(new Problem(10, 5));
+    list.add(new Problem(25, 12));
+    list.add(new Problem(15, 8));
+    list.add(new Problem(6, 3));
+    list.add(new Problem(7, 4));
 
     DFS(0,0,0);
 
     System.out.println(answer);
   }
-
 }
