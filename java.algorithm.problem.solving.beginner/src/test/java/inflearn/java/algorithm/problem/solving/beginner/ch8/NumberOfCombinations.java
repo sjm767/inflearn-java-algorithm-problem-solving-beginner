@@ -1,8 +1,6 @@
-package inflearn.java.algorithm.problem.solving.beginner;
+package inflearn.java.algorithm.problem.solving.beginner.ch8;
 
-import java.util.*;
-
-public class Main {
+public class NumberOfCombinations {
 
   static int n;
   static int r;
@@ -22,14 +20,12 @@ public class Main {
     }
   }
   public static void main(String[] args) {
-    Scanner kb = new Scanner(System.in);
-    n = kb.nextInt();
-    r = kb.nextInt();
+    n = 33;
+    r = 19;
     fact = new int[n+1];
     mem = new int[n+1][n+1];
 
     System.out.println(combi(n, r));
 
   }
-
 }
