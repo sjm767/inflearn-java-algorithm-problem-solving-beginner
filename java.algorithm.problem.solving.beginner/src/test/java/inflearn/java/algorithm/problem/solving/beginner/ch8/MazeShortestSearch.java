@@ -1,8 +1,13 @@
-package inflearn.java.algorithm.problem.solving.beginner;
+package inflearn.java.algorithm.problem.solving.beginner.ch8;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
-public class Main {
+/**
+ * 11. 미로의 최단거리 통로 (BFS)
+ */
+public class MazeShortestSearch {
+
   static class Point{
     int x;
     int y;
@@ -39,15 +44,17 @@ public class Main {
   }
 
   public static void main(String[] args) {
-    Scanner kb = new Scanner(System.in);
-    m = new int[8][8];
+    m = new int[][] {
+        {0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0},
+        {0,0,1,1,1,1,1,0},
+        {0,0,0,0,1,0,0,0},
+        {0,1,1,0,1,0,1,1},
+        {0,1,1,0,1,0,0,0},
+        {0,1,0,0,0,1,0,0},
+        {0,1,0,1,0,0,0,0},
+    };
     dis = new int[8][8];
-
-    for(int i=1;i<=7;i++){
-      for (int j = 1; j <= 7; j++) {
-        m[i][j] = kb.nextInt();
-      }
-    }
     m[1][1]=1;
     BFS(1,1);
     System.out.println(dis[7][7]);

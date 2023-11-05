@@ -7,7 +7,6 @@ public class NumberOfCombinations {
 
   static int[][] mem;
 
-  static int[] fact;
   static int combi(int n,int r){
     if(mem[n][r] > 0){
       return mem[n][r];
@@ -22,7 +21,6 @@ public class NumberOfCombinations {
   public static void main(String[] args) {
     n = 33;
     r = 19;
-    fact = new int[n+1];
     mem = new int[n+1][n+1];
 
     System.out.println(combi(n, r));
