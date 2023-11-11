@@ -1,11 +1,13 @@
-package inflearn.java.algorithm.problem.solving.beginner;
+package inflearn.java.algorithm.problem.solving.beginner.ch1;
 
-import java.util.*;
+/**
+ * 8. 유효한 팰린드롬
+ */
+public class ValidPalindrome {
 
-public class Main {
   static String solution(String s) {
 
-    s = s.toLowerCase().replaceAll("[^A-Z]","");
+    s = s.toUpperCase().replaceAll("[^A-Z]","");
     StringBuilder sb = new StringBuilder(s);
 
     if (s.equals(sb.reverse().toString())) {
@@ -16,8 +18,7 @@ public class Main {
   }
 
   public static void main(String[] args) {
-    Scanner kb = new Scanner(System.in);
-    String s = kb.nextLine();
+    String s = "found7, timk: study; Yduts; emit, 7Dnuof";
     System.out.println(solution(s));
 
   }
