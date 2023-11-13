@@ -8,7 +8,11 @@ public class ExtractNumber {
   static int solution(String s) {
     int answer = 0;
 
-
+    for (Character c : s.toCharArray()) {
+      if (c >= 48 && c <= 57) {
+        answer = answer * 10 + (c-48);
+      }
+    }
     return answer;
   }
   public static void main(String[] args) {

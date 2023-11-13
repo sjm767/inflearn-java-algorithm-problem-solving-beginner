@@ -1,8 +1,12 @@
-package inflearn.java.algorithm.problem.solving.beginner;
+package inflearn.java.algorithm.problem.solving.beginner.ch2;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Main {
+/**
+ * 3. 가위 바위 보
+ */
+public class RockScissorPaper {
 
   static void solution(int n,int[] a,int[] b){
     List<Character> list = new ArrayList<>();
@@ -29,17 +33,10 @@ public class Main {
   }
 
   public static void main(String[] args) {
-    Scanner kb = new Scanner(System.in);
-    int n = kb.nextInt();
-    int[] a = new int[n];
-    int[] b = new int[n];
+    int n = 5;
+    int[] a = {2,3,3,1,3};
+    int[] b = {1,1,2,2,3};
 
-    for(int i=0;i<n;i++){
-      a[i] = kb.nextInt();
-    }
-    for(int i=0;i<n;i++){
-      b[i] = kb.nextInt();
-    }
     solution(n, a, b);
   }
 }
