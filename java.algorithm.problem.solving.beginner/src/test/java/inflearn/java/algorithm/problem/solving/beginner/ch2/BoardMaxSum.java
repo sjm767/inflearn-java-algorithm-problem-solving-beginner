@@ -1,8 +1,9 @@
-package inflearn.java.algorithm.problem.solving.beginner;
+package inflearn.java.algorithm.problem.solving.beginner.ch2;
 
-import java.util.*;
-
-public class Main {
+/**
+ * 9. 격자판 최대합
+ */
+public class BoardMaxSum {
 
   static int solution(int n, int[][] arr) {
     int answer = 0;
@@ -39,15 +40,8 @@ public class Main {
   }
 
   public static void main(String[] args) {
-    Scanner kb = new Scanner(System.in);
-    int n =kb.nextInt();
-    int [][]arr=new int[n][n];
-
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < n; j++) {
-        arr[i][j] = kb.nextInt();
-      }
-    }
+    int n =5;
+    int [][]arr={{10,13,10,12,15},{12,39,30,23,11},{11,25,50,53,15},{19,27,29,37,27},{19,13,30,13,19}};
 
     System.out.println(solution(n, arr));
   }
