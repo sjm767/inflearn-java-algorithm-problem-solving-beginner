@@ -24,7 +24,7 @@ public class Peak {
           int ny = j + dy[k];
 
           if ((nx >= 0 && nx < n) && (ny >= 0 && ny < n)) {
-            if (arr[nx][ny] > arr[i][j]) {
+            if (arr[nx][ny] >= arr[i][j]) {
               isBong = false;
               break;
             }
@@ -35,6 +35,14 @@ public class Peak {
           copy[i][j] = 1;
         }
 
+      }
+    }
+
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        if(copy[i][j] == 1){
+          answer++;
+        }
       }
     }
 
