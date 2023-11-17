@@ -1,8 +1,8 @@
-package inflearn.java.algorithm.problem.solving.beginner;
+package inflearn.java.algorithm.problem.solving.beginner.ch5;
 
-import java.util.*;
+import java.util.Stack;
 
-public class Main {
+public class CorrectParenthesis {
 
   static String solution(String s){
     String answer = "YES";
@@ -26,9 +26,9 @@ public class Main {
     return answer;
   }
   public static void main(String[] args) {
-    Scanner kb = new Scanner(System.in);
-    String s = kb.next();
+    String s = "(()(()))(()";
 
     System.out.println(solution(s));
   }
+
 }
