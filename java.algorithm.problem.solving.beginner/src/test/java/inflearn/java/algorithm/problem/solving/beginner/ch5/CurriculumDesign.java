@@ -1,8 +1,12 @@
-package inflearn.java.algorithm.problem.solving.beginner;
+package inflearn.java.algorithm.problem.solving.beginner.ch5;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
-public class Main {
+/**
+ * 7. 교육과정 설계
+ */
+public class CurriculumDesign {
 
   static String solution(String a,String b) {
     String answer = "YES";
@@ -24,13 +28,11 @@ public class Main {
     if(queue.size() > 0){
       return "NO";
     }
-
     return answer;
   }
   public static void main(String[] args) {
-    Scanner kb = new Scanner(System.in);
-    String a=kb.next();
-    String b = kb.next();
+    String a="AKDEF";
+    String b="AYKGDHEJ";
 
     System.out.println(solution(a, b));
   }
