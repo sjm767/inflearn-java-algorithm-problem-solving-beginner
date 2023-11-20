@@ -1,8 +1,11 @@
-package inflearn.java.algorithm.problem.solving.beginner;
+package inflearn.java.algorithm.problem.solving.beginner.ch6;
 
-import java.util.*;
+import java.util.Arrays;
 
-public class Main {
+/**
+ * 10. 마구간 정하기 (결정알고리즘)
+ */
+public class HorseHouse {
 
   static int solution(int n, int c, int[] arr) {
     int answer = 0;
@@ -34,14 +37,9 @@ public class Main {
   }
 
   public static void main(String[] args) {
-    Scanner kb = new Scanner(System.in);
-    int n = kb.nextInt();
-    int c = kb.nextInt();
-    int[] arr = new int[n];
-
-    for (int i = 0; i < n; i++) {
-      arr[i] = kb.nextInt();
-    }
+    int n = 5;
+    int c = 3;
+    int[] arr = {1, 2, 8, 4, 9};
 
     System.out.println(solution(n, c, arr));
   }
