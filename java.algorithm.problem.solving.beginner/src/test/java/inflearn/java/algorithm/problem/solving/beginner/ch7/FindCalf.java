@@ -4,47 +4,57 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * 8. 송아지 찾기1
+ * 8. 송아지 찾기 (BFS)
  */
 public class FindCalf {
 
   static int s;
   static int e;
 
-  static int[] mv = {1,-1,5};
+  static int answer = Integer.MAX_VALUE;
+  static int[] jump = {1, -1, 5};
+
   static int[] ch;
-  public static int BFS(int L){
+
+  static void BFS() {
     Queue<Integer> queue = new LinkedList<>();
-    ch = new int[10001];
-    ch[s]=1;
+
     queue.offer(s);
+    ch[s] = 1;
+    int L = 0;
     while (!queue.isEmpty()) {
       int len = queue.size();
-      for (int i = 0; i < len; i++) {
-        Integer pos = queue.poll();
-        if (pos == e) {
-          return L;
-        }
+      for(int i=0;i<len;i++){
+        Integer poll = queue.poll();
+        ch[poll] = 1;
 
-        for (int j = 0; j < mv.length; j++) {
-          int nx = pos+mv[j];
-          if(nx >= 1 && nx <= 10000 && ch[nx] == 0){
-            ch[nx]=1;
-            queue.offer(nx);
+        if (poll == e) {
+          answer = Math.min(answer, L);
+          break;
+        }
+        for (int j = 0; j < 3; j++) {
+          int sum = poll+jump[j];
+          if(sum > 0 && ch[sum] == 0){
+            queue.offer(poll + jump[j]);
           }
         }
       }
+
+      if (answer != Integer.MAX_VALUE) {
+        break;
+      }
       L++;
     }
-    return -1;
+
   }
+
   public static void main(String[] args) {
-    s = 5;
-    e = 14;
+    s = 1;
+    e = 21;
 
+    ch =new int[10001];
 
-
-    int answer = BFS(0);
+    BFS();
     System.out.println(answer);
   }
 }

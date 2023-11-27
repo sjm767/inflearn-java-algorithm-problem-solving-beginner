@@ -8,7 +8,7 @@ import java.util.Queue;
 /**
  * 14. 그래프 최단거리 (BFS)
  */
-public class ShortestPathGraph {
+public class ShortestPathGraphBFSArray {
 
   //정점의 수
   static int n;

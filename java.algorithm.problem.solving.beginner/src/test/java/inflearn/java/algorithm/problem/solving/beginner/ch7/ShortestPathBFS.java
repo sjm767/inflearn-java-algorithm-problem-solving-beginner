@@ -1,10 +1,11 @@
 package inflearn.java.algorithm.problem.solving.beginner.ch7;
 
+import inflearn.java.algorithm.problem.solving.beginner.ch7.ShortestPathDFS.Node;
 import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * 9. Tree 말단 노드까지의 가장 짧은 경로(BFS)
+ * 10. Tree 말단 노드까지의 가장 짧은 경로(DFS)
  */
 public class ShortestPathBFS {
 
@@ -20,10 +21,13 @@ public class ShortestPathBFS {
     }
   }
 
-  public static int BFS(Node root) {
+  static int BFS(Node root) {
     Queue<Node> queue = new LinkedList<>();
-    queue.offer(root);
+    int answer = Integer.MAX_VALUE;
     int L = 0;
+
+    queue.offer(root);
+
     while (!queue.isEmpty()) {
       int len = queue.size();
       for (int i = 0; i < len; i++) {
@@ -31,18 +35,19 @@ public class ShortestPathBFS {
 
         if (node.lt == null && node.rt == null) {
           return L;
-        }
-        if (node.lt != null) {
-          queue.offer(node.lt);
-        }
-        if (node.rt != null) {
-          queue.offer(node.rt);
+        } else {
+          if (node.lt != null) {
+            queue.offer(node.lt);
+          }
+          if (node.rt != null) {
+            queue.offer(node.rt);
+          }
         }
       }
       L++;
     }
 
-    return 0;
+    return L;
   }
 
   public static void main(String[] args) {

@@ -10,59 +10,62 @@ public class PathSearchWithList {
 
   static int n;
   static int m;
-  static int [][]arr;
-  static int [][]graph;
-  static int[]ch;
-  static int answer=0;
-  static List<List<Integer>> list = new ArrayList<>();
 
-  static void DFS(int x){
-    if(x == n){
+  static int[] ch;
+  static List<List<Integer>> list;
+
+  static int answer = 0;
+
+  static void DFS(int V){
+    if(V==n){
       answer++;
-    }
-    else{
-      List<Integer> list1 = list.get(x);
-      for (Integer v : list1){
-        if(ch[v] == 0){
-          ch[v]=1;
-          DFS(v);
-          ch[v]=0;
+    }else{
+      for (Integer aa : list.get(V)) {
+        if(ch[aa] == 0){
+          ch[aa] = 1;
+          DFS(aa);
+          ch[aa] = 0;
         }
       }
     }
 
   }
   public static void main(String[] args) {
-    n=5;
-    m=9;
-    graph=new int[n+1][n+1];
-    arr= new int[][]{
-        {1, 2},
-        {1, 3},
-        {1, 4},
-        {2, 1},
-        {2, 3},
-        {2, 5},
-        {3, 4},
-        {4, 2},
-        {4, 5}
-    };
-    ch = new int[n+1];
+    n = 5;
+    m = 9;
+    ch = new int[n + 1];
 
+    list = new ArrayList<>();
     for(int i=0;i<=n;i++){
       list.add(new ArrayList<>());
     }
 
 
-    for(int i=0;i<m;i++){
-      int x = arr[i][0];
-      int y = arr[i][1];
-      List<Integer> innerList = list.get(x);
-      innerList.add(y);
+    int[][] graph = new int[n+1][n+1];
+    graph[1][2] = 1;
+    graph[1][3] = 1;
+    graph[1][4] = 1;
+    graph[2][1] = 1;
+    graph[2][3] = 1;
+    graph[2][5] = 1;
+    graph[3][4] = 1;
+    graph[4][2] = 1;
+    graph[4][5] = 1;
+
+
+    for(int i=1;i<=n;i++){
+      List<Integer> iList = list.get(i);
+      for (int j = 1; j <= n; j++) {
+        if(graph[i][j] == 1){
+          iList.add(j);
+        }
+      }
     }
 
-    ch[1]=1;
+    ch[1] = 1;
     DFS(1);
+
     System.out.println(answer);
+
   }
 }

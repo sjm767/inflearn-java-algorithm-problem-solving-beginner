@@ -2,47 +2,71 @@ package inflearn.java.algorithm.problem.solving.beginner;
 
 import java.util.*;
 
+
 public class Main {
 
-  static int solution(int n, int c, int[] arr) {
-    int answer = 0;
-    Arrays.sort(arr);
+  static class Point{
+    int x;
+    int y;
 
-    int lt = Arrays.stream(arr).min().getAsInt();
-    int rt = Arrays.stream(arr).max().getAsInt();
+    public Point(int x, int y) {
+      this.x = x;
+      this.y = y;
+    }
+  }
 
-    while(lt<=rt){
-      int mid = (lt+rt)/2;
+  static int[][] m;
+  static int[] dx = {0,1,0,-1};
+  static int[] dy = {-1,0,1,0};
 
-      int ct = 1;
-      int dis = 0;
-      for (int i = 1; i < n; i++) {
-        if(arr[i] - arr[dis] >= mid){
-          ct++;
-          dis = i;
+  static int[][] dis;
+
+  static int answer = Integer.MAX_VALUE;
+  static int ct;
+
+  static int BFS(){
+    Queue<Point> queue = new LinkedList<>();
+
+    ct = 0;
+    m[1][1] = 1;
+    queue.offer(new Point(1, 1));
+
+
+    while (!queue.isEmpty()) {
+      Point poll = queue.poll();
+
+      if(poll.x ==7  && poll.y == 7) {
+        return dis[poll.x][poll.y];
+      }
+
+      for (int i = 0; i < 4; i++) {
+        int nx = poll.x + dx[i];
+        int ny = poll.y + dy[i];
+        if(nx > 0 && ny > 0 && nx <= 7 && ny <= 7 && m[nx][ny] == 0){
+          m[nx][ny] = 1;
+          dis[nx][ny] = dis[poll.x][poll.y] + 1;
+          queue.add(new Point(nx, ny));
         }
       }
 
-      if(ct >= c){
-        answer = mid;
-        lt=mid+1;
-      }else if(ct < c){
-        rt = mid-1;
-      }
     }
-    return answer;
+
+    return -1;
+
   }
 
   public static void main(String[] args) {
     Scanner kb = new Scanner(System.in);
-    int n = kb.nextInt();
-    int c = kb.nextInt();
-    int[] arr = new int[n];
 
-    for (int i = 0; i < n; i++) {
-      arr[i] = kb.nextInt();
+    m = new int[8][8];
+    dis = new int[8][8];
+
+    for (int i = 1; i <= 7; i++) {
+      for (int j = 1; j <= 7; j++) {
+        m[i][j] = kb.nextInt();
+      }
     }
+    System.out.println(BFS());
 
-    System.out.println(solution(n, c, arr));
   }
 }

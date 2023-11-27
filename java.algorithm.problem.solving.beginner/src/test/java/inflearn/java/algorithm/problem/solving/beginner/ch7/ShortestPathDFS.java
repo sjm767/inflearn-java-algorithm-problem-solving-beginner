@@ -17,11 +17,12 @@ public class ShortestPathDFS {
     }
   }
   static int answer = Integer.MAX_VALUE;
-  public static int DFS(Node root, int L) {
-    if (root.lt == null && root.rt == null) {
+
+  static int DFS(Node root, int L){
+    if(root.lt == null && root.rt == null){
       return L;
-    } else {
-      return Math.min(DFS(root.lt, L + 1),DFS(root.rt, L+1));
+    }else{
+      return Math.min(DFS(root.lt, L + 1), DFS(root.rt, L + 1));
     }
   }
 
@@ -32,7 +33,7 @@ public class ShortestPathDFS {
     root.lt.lt = new Node(4);
     root.lt.rt = new Node(5);
 
-    DFS(root,0);
-    System.out.println(answer);
+    int L = DFS(root, 0);
+    System.out.println(L);
   }
 }
