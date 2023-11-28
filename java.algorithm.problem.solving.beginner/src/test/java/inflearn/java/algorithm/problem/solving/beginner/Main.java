@@ -4,7 +4,6 @@ import java.util.*;
 
 
 public class Main {
-
   static class Point{
     int x;
     int y;
@@ -15,58 +14,70 @@ public class Main {
     }
   }
 
-  static int[][] m;
+  static int n;
+  static int m;
+  static int[][] board;
+
   static int[] dx = {0,1,0,-1};
   static int[] dy = {-1,0,1,0};
 
-  static int[][] dis;
+  static List<Point> hs = new ArrayList<>();
+  static List<Point> pz = new ArrayList<>();
+
+  static int[] combi;
 
   static int answer = Integer.MAX_VALUE;
-  static int ct;
 
-  static int BFS(){
-    Queue<Point> queue = new LinkedList<>();
+  static void DFS(int L, int s){
+    if(L == m){
+      int sum = 0;
+      for (Point h : hs) {
+        int dis = Integer.MAX_VALUE;
+        for(int i=0;i<m;i++){
+          Point pzPoint = pz.get(combi[i]);
 
-    ct = 0;
-    m[1][1] = 1;
-    queue.offer(new Point(1, 1));
-
-
-    while (!queue.isEmpty()) {
-      Point poll = queue.poll();
-
-      if(poll.x ==7  && poll.y == 7) {
-        return dis[poll.x][poll.y];
+          int xSum = Math.abs(h.x - pzPoint.x);
+          int ySum = Math.abs(h.y - pzPoint.y);
+          dis = Math.min(dis,xSum+ySum);
+        }
+        sum+=dis;
       }
+      answer = Math.min(answer, sum);
+    }else{
+      for (int i = s; i < pz.size(); i++) {
+        combi[L] = i;
+        DFS(L+1,i+1);
+      }
+    }
+  }
 
-      for (int i = 0; i < 4; i++) {
-        int nx = poll.x + dx[i];
-        int ny = poll.y + dy[i];
-        if(nx > 0 && ny > 0 && nx <= 7 && ny <= 7 && m[nx][ny] == 0){
-          m[nx][ny] = 1;
-          dis[nx][ny] = dis[poll.x][poll.y] + 1;
-          queue.add(new Point(nx, ny));
+  static void solution(){
+    for(int i=0;i<n;i++){
+      for(int j=0;j<n;j++){
+        if(board[i][j] == 1){
+          hs.add(new Point(i, j));
+        }else if(board[i][j] == 2){
+          pz.add(new Point(i, j));
         }
       }
-
     }
 
-    return -1;
-
+    DFS(0,0);
   }
 
   public static void main(String[] args) {
     Scanner kb = new Scanner(System.in);
-
-    m = new int[8][8];
-    dis = new int[8][8];
-
-    for (int i = 1; i <= 7; i++) {
-      for (int j = 1; j <= 7; j++) {
-        m[i][j] = kb.nextInt();
+    n = kb.nextInt();
+    m = kb.nextInt();
+    board = new int[n][n];
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        board[i][j] = kb.nextInt();
       }
     }
-    System.out.println(BFS());
 
+    combi = new int[m];
+    solution();
+    System.out.println(answer);
   }
 }
