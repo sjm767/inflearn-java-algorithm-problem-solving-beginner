@@ -1,9 +1,16 @@
-package inflearn.java.algorithm.problem.solving.beginner;
+package inflearn.java.algorithm.problem.solving.beginner.ch9;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
-
-public class Main {
+/**
+ * 4. 최대 수입 스케쥴 (PriorityQueue 응용 문제)
+ */
+public class MaxIncomeSchedule {
 
   static class Lecture implements Comparable<Lecture>{
     int day;
@@ -16,6 +23,9 @@ public class Main {
 
     @Override
     public int compareTo(Lecture o) {
+      if (this.day == o.day) {
+        return this.money - o.money;
+      }
       return this.day - o.day;
     }
   }
@@ -45,16 +55,15 @@ public class Main {
     return answer;
   }
   public static void main(String[] args) {
-    Scanner kb = new Scanner(System.in);
-    int n = kb.nextInt();
+    int n = 6;
     List<Lecture> list = new ArrayList<>();
 
-    for (int i = 0; i < n; i++) {
-      int money = kb.nextInt();
-      int time = kb.nextInt();
-
-      list.add(new Lecture(time, money));
-    }
+    list.add(new Lecture(2, 50));
+    list.add(new Lecture(1, 20));
+    list.add(new Lecture(2, 40));
+    list.add(new Lecture(3, 60));
+    list.add(new Lecture(3, 30));
+    list.add(new Lecture(1, 30));
 
     System.out.println(solution(n, list));
 
