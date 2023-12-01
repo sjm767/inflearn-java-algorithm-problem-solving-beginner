@@ -7,16 +7,16 @@ public class IsFriend {
   static int[] umf;
 
   static int Find(int v){
-    if(umf[v] == v) {
+    if(umf[v] == v){
       return v;
     }
-    else{
-      return umf[v] = Find(umf[v]);
-    }
+    return umf[v] = Find(umf[v]);
   }
-  static void Union(int a,int b) {
+
+  static void Union(int a,int b){
     int fa = Find(a);
     int fb = Find(b);
+
     if(fa != fb){
       umf[fa] = fb;
     }

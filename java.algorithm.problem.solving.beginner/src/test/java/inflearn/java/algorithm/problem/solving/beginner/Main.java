@@ -5,58 +5,41 @@ import java.util.*;
 
 public class Main {
 
-  static class Lecture implements Comparable<Lecture>{
-    int day;
-    int money;
 
-    public Lecture(int day, int money) {
-      this.day = day;
-      this.money = money;
-    }
+  static int[] dy;
 
-    @Override
-    public int compareTo(Lecture o) {
-      return this.day - o.day;
-    }
-  }
-
-  static int solution(int n, List<Lecture> list) {
+  static int solution(int n,int[] arr) {
     int answer = 0;
-    Collections.sort(list,Collections.reverseOrder());
-    int maxDay = list.get(0).day;
 
-    Queue<Integer> queue = new PriorityQueue<>(Comparator.reverseOrder());
+    dy[0] = 1;
+    dy[1] = 1;
 
-    int j=0;
-    for(int i=maxDay; i>=1;i--){
-      for(;j<n;j++){
-        if(list.get(j).day < i) {
-          break;
-        }else{
-          queue.offer(list.get(j).money);
+    for (int i = 2; i < n; i++) {
+      for(int j=0;j<i;j++){
+        if(arr[j] < arr[i]){
+          dy[i] = Math.max(dy[i], dy[j]+1);
         }
       }
-
-      if (!queue.isEmpty()) {
-        answer += queue.poll();
+      if(dy[i] == 0){
+        dy[i] = 1;
       }
     }
 
-    return answer;
+    return Arrays.stream(dy).max().getAsInt();
   }
+
   public static void main(String[] args) {
     Scanner kb = new Scanner(System.in);
     int n = kb.nextInt();
-    List<Lecture> list = new ArrayList<>();
+    int[] arr = new int[n];
 
     for (int i = 0; i < n; i++) {
-      int money = kb.nextInt();
-      int time = kb.nextInt();
-
-      list.add(new Lecture(time, money));
+      arr[i] = kb.nextInt();
     }
 
-    System.out.println(solution(n, list));
+    dy = new int[n];
+    System.out.println(solution(n, arr));
+
 
   }
 }
