@@ -1,9 +1,9 @@
-package inflearn.java.algorithm.problem.solving.beginner;
+package inflearn.java.algorithm.problem.solving.beginner.ch10;
 
-import java.util.*;
-
-
-public class Main {
+/**
+ * 5. 동전교환 (냅색 알고리즘)
+ */
+public class ExchangeCoin {
 
   static int solution(int n, int[] arr, int m) {
     int answer = 0;
@@ -27,14 +27,9 @@ public class Main {
   }
 
   public static void main(String[] args) {
-    Scanner kb = new Scanner(System.in);
-    int n = kb.nextInt();
-    int[] arr = new int[n];
-
-    for (int i = 0; i < n; i++) {
-      arr[i] = kb.nextInt();
-    }
-    int m = kb.nextInt();
+    int n = 3;
+    int[] arr = {1, 2, 5};
+    int m = 15;
 
     System.out.println(solution(n, arr, m));
   }
